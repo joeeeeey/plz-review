@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>please-review-autocomplete</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>E62AB007-2F54-4B65-90D2-D4D676515F45</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CFF9F7BC-3EC1-4450-8AD3-BF7DD85FD74E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Joey</string>
+	<key>description</key>
+	<string>please review autocomplete</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>please review autocomplete</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>tell application "Slack" to activatedelay 0.3
+tell application "System Events" to tell process "Slack" to keystroke "k" using {command down}delay 0.1
+
+set the clipboard to "slackbot" 
+tell application "System Events" to keystroke "v" using {command down}delay 1
+tell application "System Events" to tell process "Slack" to key code 36delay 0.5
+
+set the clipboard to " *Please review* "
+tell application "System Events" to keystroke "v" using {command down}
+delay 1 # should delay after pasting
+
+tell application "System Events" to tell process "Slack" to key code 36 using {shift down}
+# set the clipboard to " ``` "
+# tell application "System Events" to keystroke "v" using {command down}
+tell application "System Events" to tell process "Slack" to keystroke "```"
+delay 1 # should delay after pasting
+
+set the clipboard to "{query}"
+tell application "System Events" to keystroke "v" using {command down}
+
+tell application "System Events" to tell process "Slack" to key code 36 using {shift down}
+tell application "System Events" to tell process "Slack" to key code 36 using {shift down}
+tell application "System Events" to tell process "Slack" to key code 36 using {shift down}
+delay 1 # should delay after pasting
+tell application "System Events" to tell process "Slack" to key code 36 using {shift down}tell application "System Events" to tell process "Slack" to keystroke "@here"
+
+tell application "System Events" to tell process "Slack" to keystroke "f" using {shift down, command down} # format
+delay 0.3 # should delay after pasting
+tell application "System Events" to tell process "Slack" to key code 126</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string>/usr/local/bin/code {query}</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CFF9F7BC-3EC1-4450-8AD3-BF7DD85FD74E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>98</integer>
+				<key>keyword</key>
+				<string>plzreview</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Input your PR introduction</string>
+				<key>script</key>
+				<string>cat&lt;&lt;EOB
+{"items":[{"title":"Press enter to open slack.","arg":"{query}"}]}
+EOB</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Please review in slack...</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>E62AB007-2F54-4B65-90D2-D4D676515F45</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>CFF9F7BC-3EC1-4450-8AD3-BF7DD85FD74E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>420</integer>
+		</dict>
+		<key>E62AB007-2F54-4B65-90D2-D4D676515F45</key>
+		<dict>
+			<key>xpos</key>
+			<integer>265</integer>
+			<key>ypos</key>
+			<integer>430</integer>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>0.0.1</string>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
