@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>prreview-autocomplete</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>94B4FB91-A3F4-4368-86E1-F4B85699B5C4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D23D2E20-3627-451C-AE96-BFC00F917A60</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D23D2E20-3627-451C-AE96-BFC00F917A60</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>71C3F2A3-5834-4931-A8B0-D70F94C5E980</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Joey</string>
+	<key>description</key>
+	<string>PRreview-autocomplete</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>PRreview-autocomplete</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>on replace_chars(this_text, search_string, replacement_string)	set AppleScript's text item delimiters to the search_string	set the item_list to every text item of this_text	set AppleScript's text item delimiters to the replacement_string	set this_text to the item_list as string	set AppleScript's text item delimiters to ""	return this_textend replace_chars
+
+set query_string to "{query}"
+
+set the query_string to replace_chars(query_string, "&amp;|", "`")
+set AppleScript's text item delimiters to "****"
+set slack_channel to text item 2 of query_string
+
+tell application "Slack" to activatedelay 0.3tell application "System Events" to tell process "Slack" to keystroke "k" using {command down}delay 0.1
+
+set the clipboard to slack_channel # change it go to other channeltell application "System Events" to keystroke "v" using {command down}delay 1.5 # Show slack bot depends network.tell application "System Events" to tell process "Slack" to key code 36delay 0.5
+
+
+# concatenate string
+set dddd to text item 1 of query_string
+
+set the clipboard to dddd
+tell application "System Events" to keystroke "v" using {command down}delay 1 # should delay after pasting
+
+tell application "System Events" to tell process "Slack" to keystroke "f" using {shift down, command down} # format</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string>/usr/local/bin/code {query}</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>71C3F2A3-5834-4931-A8B0-D70F94C5E980</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>126</integer>
+				<key>keyword</key>
+				<string>plzreview</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Input your PR introduction</string>
+				<key>script</key>
+				<string>/usr/bin/ruby main.rb "verify_pr_url,{query}"; </string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>https://....</string>
+				<key>title</key>
+				<string>Please review in slack</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>94B4FB91-A3F4-4368-86E1-F4B85699B5C4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/bin/ruby main.rb "get_pr_info,{query}";</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string>/usr/local/bin/code {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D23D2E20-3627-451C-AE96-BFC00F917A60</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>71C3F2A3-5834-4931-A8B0-D70F94C5E980</key>
+		<dict>
+			<key>xpos</key>
+			<integer>630</integer>
+			<key>ypos</key>
+			<integer>260</integer>
+		</dict>
+		<key>94B4FB91-A3F4-4368-86E1-F4B85699B5C4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>270</integer>
+		</dict>
+		<key>D23D2E20-3627-451C-AE96-BFC00F917A60</key>
+		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
+			<key>ypos</key>
+			<integer>280</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
