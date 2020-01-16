@@ -16,7 +16,7 @@ class GithubAction
     end
 
     def polish_url(input_value)
-      pr_number = input_value.match(/\/pull\/([0-9])\/?/)[1]
+      pr_number = input_value.match(/\/pull\/([0-9]+)\/?/)[1]
       return "#{input_value.split(pr_number)[0]}#{pr_number}"
     end
 
