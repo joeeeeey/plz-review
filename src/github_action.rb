@@ -17,7 +17,8 @@ class GithubAction
 
     def polish_url(input_value)
       pr_number = input_value.match(/\/pull\/([0-9]+)\/?/)[1]
-      return "#{input_value.split(pr_number)[0]}#{pr_number}"
+
+      return "#{input_value.split('/pull/')[0]}/pull/#{pr_number}"
     end
 
     def get_config_data

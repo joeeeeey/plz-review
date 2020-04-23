@@ -5,4 +5,4 @@ test_verify_pr_url:
 	/usr/bin/ruby main.rb "verify_pr_url,https://github.com/Overseas-Student-Living/properties-service/pull/1"
 
 test_get_pr_info:
-	/usr/bin/ruby main.rb "get_pr_info,https://github.com/Overseas-Student-Living/properties-service/pull/1/commits"
+	/usr/bin/ruby main.rb "get_pr_info,https://github.com/Project-G66-Org/projectg-payments-service/pull/6"
